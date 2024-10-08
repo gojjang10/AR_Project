@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gun
+  - Monster
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Monster
   - Water
   - UI
   - 
