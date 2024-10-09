@@ -111,4 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterHP: 0
+  moveSpeed: 2
+  stopDistance: 2
+  player: {fileID: 0}
   returnMonster: {fileID: 0}

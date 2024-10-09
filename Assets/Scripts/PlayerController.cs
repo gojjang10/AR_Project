@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
             yield return delay;
         }
 
-        Debug.Log("총알이 부족합니다. 'R'키를 눌러 재장전 하십시오.");
+        Debug.Log("총알이 부족합니다. 장전버튼을 눌러 재장전 하십시오.");
         shotcoroutine = null;
     }
     private IEnumerator reload()
