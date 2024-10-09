@@ -9,13 +9,16 @@ public class Monster : MonoBehaviour
     public float stopDistance = 2f;
     public GameObject player;
 
+    public Animator animator;
+
     public MonsterPool returnMonster;
 
     public Coroutine attackCotoutine;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("MainCamera");
+        animator = GetComponent<Animator>();
 
     }
 
@@ -64,10 +67,11 @@ public class Monster : MonoBehaviour
     private IEnumerator Attck()
     {
         PlayerController player = this.player.GetComponent<PlayerController>();
+        animator.Play("FlyingBiteAttack");
         // 애니메이션 추가
         player.hp--;
         Debug.Log($"현재 플레이어 체력 {player.hp}");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         attackCotoutine = null;
     }
 }
