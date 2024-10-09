@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private WaitForSeconds delay;
     private WaitForSeconds reloadDelay;
 
+    public int hp = 30;
     private int maxBullet = 30;
     private int curBullet = 30;
     private bool getGun = false;
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         model.Bullet = curBullet;
+        model.HP = hp;
     }
 
     public void PickUpGun()
@@ -148,6 +151,9 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator reload()
     {
+        GameObject curButton = EventSystem.current.currentSelectedGameObject;
+        Image reloadImage = curButton.GetComponent<Image>();
+
         Debug.Log("장전중...");
         yield return reloadDelay;
 

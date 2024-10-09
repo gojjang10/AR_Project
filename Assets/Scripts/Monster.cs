@@ -11,6 +11,8 @@ public class Monster : MonoBehaviour
 
     public MonsterPool returnMonster;
 
+    public Coroutine attackCotoutine;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -50,6 +52,22 @@ public class Monster : MonoBehaviour
         else
         {
             Debug.Log("몬스터 도착함");
+
+            if(attackCotoutine == null)
+            {
+                attackCotoutine = StartCoroutine(Attck());
+            }
+
         }
+    }
+
+    private IEnumerator Attck()
+    {
+        PlayerController player = this.player.GetComponent<PlayerController>();
+        // 애니메이션 추가
+        player.hp--;
+        Debug.Log($"현재 플레이어 체력 {player.hp}");
+        yield return new WaitForSeconds(2f);
+        attackCotoutine = null;
     }
 }
