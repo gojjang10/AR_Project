@@ -154,9 +154,20 @@ public class PlayerController : MonoBehaviour
         GameObject curButton = EventSystem.current.currentSelectedGameObject;
         Image reloadImage = curButton.GetComponent<Image>();
 
-        Debug.Log("장전중...");
-        yield return reloadDelay;
+        reloadImage.fillAmount = 0;
+        float reloadTime = 2f;
+        //float reloadSpeed = 1 / reloadTime;
+        float elapsedTime = 0f;
 
+        while(reloadImage.fillAmount < 1f)
+        {
+            //reloadImage.fillAmount += reloadSpeed * Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            reloadImage.fillAmount = Mathf.Clamp01(elapsedTime / reloadTime);
+            yield return null;          // 다음 프레임까지 대기
+        }
+
+        Debug.Log("장전중...");
         curBullet = maxBullet;
 
         Debug.Log("장전완료");
